@@ -1,0 +1,17 @@
+VERIFICATION
+Verification is intended to assist the Chocolatey moderators and community
+in verifying that this package's contents are trustworthy.
+
+The embedded software can be verified by doing the following:
+
+1. Download the following:
+  32-Bit software: <https://www.anyburn.com/anyburn_setup.exe>
+  64-Bit software: <https://www.anyburn.com/anyburn_setup_x64.exe>
+2. Get the checksum using one of the following methods:
+  - Using powershell function 'Get-FileHash'
+  - Use chocolatey utility 'checksum.exe'
+3. The checksums should match the following:
+
+Calculate checksum(s) (eg. using Get-FileHash) and compare with checksum(s) for file(s) (anyburn_setup.exe or anyburn_setup_x64.exe) included in this package.
+
+The file 'LICENSE.txt' has been obtained from <https://www.anyburn.com/tutorials/eula.htm>
