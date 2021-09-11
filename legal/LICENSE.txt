@@ -1,5 +1,17 @@
 From: https://www.anyburn.com/tutorials/eula.htm
 
+-------------------------------------------------------------
+From: mailto:support@anyburn.com
+Subject: Re: Request permission to post AnyBurn on Chocolatey
+Date: 2021/09/10 21:24
+Hello,
+
+Thank you for introducing anyburn to users via Chocolatey. Yes, we authorize you to post anyburn on Chocolatey
+
+Best Regards,
+Fenghua
+-------------------------------------------------------------
+
 End User License Agreement (EULA)
 
 AnyBurn End User License Agreement
