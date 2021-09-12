@@ -1,22 +1,25 @@
 ﻿# Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one.
 $ErrorActionPreference = 'Stop';
 
-$packageName	= 'anyburn'
+$packageName	= 'anyburn.install'
 $softwareName	= 'AnyBurn*'
-$installerType	= 'EXE'
 $silentArgs	= '/S'
 $validExitCodes	= @(0, 3010, 1605, 1614, 1641)
 $Bits		= Get-ProcessorBits
 
 If ( $Bits -eq 64 ) {
-	$sUninstallPathParent = "${Env:ProgramFiles}"
+	$uninstallPathRoot	= "${Env:ProgramFiles}"
 } Else {
-	$sUninstallPathParent = "${Env:ProgramFiles(x86)}"
+	$uninstallPathRoot	= "${Env:ProgramFiles(x86)}"
 }
-$sUninstallPath = ( Join-Path -Path ( Join-Path -Path $sUninstallPathParent -ChildPath "AnyBurn" ) -ChildPath "uninstall.exe" )
+$installName		= ( $softwareName.replace(' ','*') )
+$uninstallPathParent	= ( Join-Path -Path $uninstallPathRoot -ChildPath $installName )
+$uninstallName		= 'uninstall.exe'
+$uninstallPath		= ( Join-Path -Path $uninstallPathParent -ChildPath $uninstallName )
 
-Start-CheckandStop "AnyBurn"
+Start-CheckandStop "$installName"
 
-If ( $sUninstallPath.Length ) {
-	Uninstall-ChocolateyPackage $packageName $installerType $silentArgs $sUninstallPath $validExitCodes
+If ( $uninstallPath.Length ) {
+	$uninstallerType	= ( ( Split-Path -leaf $uninstallPath ).split('.')[-1].ToUpper() )
+	Uninstall-ChocolateyPackage $packageName $uninstallerType $silentArgs $uninstallPath $validExitCodes
 }

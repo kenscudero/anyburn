@@ -2,34 +2,49 @@
 $ErrorActionPreference = 'Stop';
 
 $toolsDir   	= "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
-$packageName	= 'anyburn'
+$packageName	= 'anyburn.install'
+$softwareName	= 'AnyBurn*'
 $url		= 'https://www.anyburn.com/anyburn_setup.exe'
 $url64		= 'https://www.anyburn.com/anyburn_setup_x64.exe'
 $fileType	= ( $(Split-Path -leaf $url) -split('\.') )[-1].ToUpper()
 $fileType64	= ( $(Split-Path -leaf $url64) -split('\.') )[-1].ToUpper()
 $checksum	= '572542287AD9F6227F4383A8B3CB968A6AD68104D063FFF76991DEAD64A1CF18'
+$checksumType	= 'sha256'
 $checksum64	= '2631E2FB7B282B56F206DE79AA69CC3CFFC9A518717EC6B496C5CF176E3E18AB'
+$checksumType64	= 'sha256'
 $silentArgs	= '/S'
+$validExitCodes	= @(0)
 
 $packageArgs = @{
-  packageName		= $packageName
-  unzipLocation		= $toolsDir
-  fileType		= $fileType
-  fileType64		= $fileType64
+  PackageName		= $packageName
+  SoftwareName		= $softwareName
 
-  url			= $url
-  url64			= $url64
+  FileType		= $fileType
+  FileType64		= $fileType64
 
-  softwareName		= 'AnyBurn*'
+  Url			= $url
+  Url64bit		= $url64
 
-  checksum		= $checksum
-  checksum64		= $checksum64
-  checksumType		= 'sha256'
-  checksumType64	= 'sha256'
+  Checksum		= $checksum
+  Checksum64		= $checksum64
+  ChecksumType		= $checksumType
+  ChecksumType64	= $checksumType64
 
-  silentArgs		= $silentArgs
+  SilentArgs		= $silentArgs
 
-  validExitCodes	= @(0)
+  ValidExitCodes	= $validExitCodes
 }
 
 Install-ChocolateyPackage @packageArgs
+
+$name			= ( $packageArgs.SoftwareName )
+$installLocation	= ( Get-AppInstallLocation $name )
+if ($installLocation) {
+    Write-Host "'$name' installed to '$installLocation'"
+
+    $installName = ( $name.replace('*',$null) )
+    $application = ( Join-Path -Path $installLocation -ChildPath "$installName.exe" )
+    Register-Application $application $installName
+    Write-Host "'$name' registered as '$installName'"
+}
+else { Write-Warning "Can not find '$name' install location" }
