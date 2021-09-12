@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one. -->
+<package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
+  <metadata>
+	<id>anyburn.install</id>
+	<version>5.2</version>
+	<title>AnyBurn (Install)</title>
+	<authors>Power Software Ltd.</authors>
+	<owners>chocolatey-community</owners>
+	<licenseUrl>https://www.anyburn.com/tutorials/eula.htm</licenseUrl>
+	<projectUrl>https://www.anyburn.com/</projectUrl>
+	<iconUrl>https://cdn.jsdelivr.net/gh/kenscudero/anyburn@main/images/AnyBurn_logo.png</iconUrl>
+	<requireLicenseAcceptance>true</requireLicenseAcceptance>
+	<description>
+___
+### [choco://anyburn](choco://anyburn)
+To use choco:// protocol URLs, install [(unofficial) choco:// Protocol support ](https://chocolatey.org/packages/choco-protocol-support)
+___
+[_AnyBurn_](https://www.anyburn.com/) is a light weight but professional CD / DVD / Blu-ray burning software that everyone must have. It provides a free and complete solution for burning and disc imaging.
+___
+**[PACKAGE NOTES](https://github.com/kenscudero/anyburn/blob/main/README.md)**
+___
+	</description>
+	<summary>AnyBurn is a light weight but professional CD / DVD / Blu-ray burning software.</summary>
+ 	<releaseNotes>https://www.anyburn.com/tutorials/history.htm</releaseNotes>
+	<copyright>Copyright 2004-2021 Power Software Ltd. All rights reserved.</copyright>
+	<tags>anyburn freeware burn media cd dvd iso data</tags>
+	<packageSourceUrl>https://github.com/kenscudero/anyburn</packageSourceUrl>
+	<docsUrl>https://www.anyburn.com/tutorials/index.htm</docsUrl>
+	<bugTrackerUrl>mailto:support@anyburn.com</bugTrackerUrl>
+	<dependencies>
+	  <dependency id="chocolatey-core.extension" version="1.3.3" />
+	  <dependency id="chocolatey-misc-helpers.extension" version="0.0.4" />
+	</dependencies>
+  </metadata>
+  <files>
+	<file src="images\AnyBurn_logo.png" target="images\" />
+	<file src="legal\**" target="legal" />
+	<file src="tools\**" target="tools" />
+  </files>
+</package>
