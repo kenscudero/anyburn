@@ -2,7 +2,7 @@
 $ErrorActionPreference = 'Stop';
 
 $toolsDir   	= "$(Split-Path -parent $MyInvocation.MyCommand.Definition)"
-$packageName	= 'anyburn.install'
+$packageName	= 'anyburn2'
 $softwareName	= 'AnyBurn*'
 $url		= 'https://www.anyburn.com/anyburn_setup.exe'
 $url64		= 'https://www.anyburn.com/anyburn_setup_x64.exe'
@@ -14,6 +14,7 @@ $checksum64	= '2631E2FB7B282B56F206DE79AA69CC3CFFC9A518717EC6B496C5CF176E3E18AB'
 $checksumType64	= 'sha256'
 $silentArgs	= '/S'
 $validExitCodes	= @(0)
+$Bits		= Get-ProcessorBits
 
 $packageArgs = @{
   PackageName		= $packageName
@@ -43,7 +44,12 @@ if ($installLocation) {
     Write-Host "'$name' installed to '$installLocation'"
 
     $installName = ( $name.replace('*',$null) )
-    $application = ( Join-Path -Path $installLocation -ChildPath "$installName.exe" )
+    If ( $Bits -eq 64 ) {
+	    $ChildPath = "$installName.$fileType64"
+    } Else {
+	    $ChildPath = "$installName.$fileType"
+    }
+    $application = ( Join-Path -Path $installLocation -ChildPath $ChildPath )
     Register-Application $application $installName
     Write-Host "'$name' registered as '$installName'"
 }

@@ -1,7 +1,7 @@
 ﻿# Do not remove this test for UTF-8: if “Ω” doesn’t appear as greek uppercase omega letter enclosed in quotation marks, you should use an editor that supports UTF-8, not this one.
 $ErrorActionPreference = 'Stop';
 
-$packageName	= 'anyburn.install'
+$packageName	= 'anyburn2'
 $softwareName	= 'AnyBurn*'
 $silentArgs	= '/S'
 $validExitCodes	= @(0, 3010, 1605, 1614, 1641)
