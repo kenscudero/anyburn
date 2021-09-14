@@ -12,7 +12,7 @@ If ( $Bits -eq 64 ) {
 } Else {
 	$uninstallPathRoot	= "${Env:ProgramFiles(x86)}"
 }
-$installName		= ( $softwareName.replace(' ','*') )
+$installName		= ( $softwareName.replace('*',$null) )
 $uninstallPathParent	= ( Join-Path -Path $uninstallPathRoot -ChildPath $installName )
 $uninstallName		= 'uninstall.exe'
 $uninstallPath		= ( Join-Path -Path $uninstallPathParent -ChildPath $uninstallName )
